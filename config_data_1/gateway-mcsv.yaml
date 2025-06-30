@@ -1,0 +1,47 @@
+server:
+  port: 8080
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: true
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: usuarios
+          uri: lb://usuarios-mcsv
+          predicates:
+            - Path=/probar/**
+          filters:
+            - JwtAuthFilter
+
+        # Auth-service
+        - id: auth-test
+          uri: lb://auth-mcsv
+          predicates:
+            - Path=/test/**
+            
+        - id: auth-login
+          uri: lb://auth-mcsv
+          predicates:
+            - Path=/login/**
+
+        - id: auth-api
+          uri: lb://auth-mcsv
+          predicates:
+           - Path=/api/**
+
+        - id: profiles
+          uri: lb://profiles-mcsv
+          predicates:
+           - Path=/profiles/**
+          filters:
+            - JwtAuthFilter

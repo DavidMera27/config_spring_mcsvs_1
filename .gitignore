@@ -1,0 +1,10 @@
+# Ignora todo
+*
+
+# Excepto esta carpeta (¡ojo con el slash!)
+!config_data_1/
+!config_data_1/**
+
+!.gitignore
+
+!para_hacer.txt

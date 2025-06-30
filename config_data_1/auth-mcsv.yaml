@@ -1,0 +1,33 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://davisito:1234root@localhost:27017/proyecto_1_usuarios?authSource=admin
+      auto-index-creation: true
+      # host: localhost
+      # port: 27017
+      # username: davisito
+      # password:
+      # database: nearbeats_uno_usuarios
+
+jwt:
+  # secret:
+  #   key: f4bed8de33ecd327f85f2287680c57a26435f828afb907ecb84ed1a25a97e2af
+  time:
+    expiration:
+      access: 450000
+      # 3 meses: 7889400000
+      refresh: 1200000
+  generator:
+    issuer: AUTH-SERVICE
+rsa:
+  public-key: classpath:/certs/public.pem
+  private-key: classpath:/certs/private.pem

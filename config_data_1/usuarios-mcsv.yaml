@@ -1,0 +1,14 @@
+server:
+  port: ${PORT:${SERVER_PORT:0}}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://davisito:1234root@localhost:27017/proyecto_1_usuarios?authSource=admin
+      auto-index-creation: true
