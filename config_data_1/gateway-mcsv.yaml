@@ -54,3 +54,10 @@ spring:
            - Path=/posts/**
           filters:
             - JwtAuthFilter
+        
+        - id: comments
+          uri: lb://posts-mcsv
+          predicates:
+           - Path=/comments/**
+          filters:
+            - JwtAuthFilter
