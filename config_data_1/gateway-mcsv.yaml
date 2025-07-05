@@ -39,9 +39,18 @@ spring:
           predicates:
            - Path=/api/**
 
+        # profiles-service
         - id: profiles
           uri: lb://profiles-mcsv
           predicates:
            - Path=/profiles/**
+          filters:
+            - JwtAuthFilter
+        
+        # posts-service
+        - id: posts
+          uri: lb://posts-mcsv
+          predicates:
+           - Path=/posts/**
           filters:
             - JwtAuthFilter
